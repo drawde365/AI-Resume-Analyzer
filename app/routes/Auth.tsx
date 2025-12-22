@@ -1,5 +1,7 @@
 import type {Route} from "../../.react-router/types/app/routes/+types/home";
 import {usePuterStore} from "~/lib/puter";
+import {useEffect} from "react";
+import {useLocation, useNavigate} from "react-router";
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -10,6 +12,11 @@ export function meta({}: Route.MetaArgs) {
 
 const Auth = () => {
     const {isLoading, auth} = usePuterStore();
+    const next = useLocation().search.split("next=")[1];
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (auth.isAuthenticated) navigate(next);
+    }, [auth.isAuthenticated]);
     return (
         <main className="bg-[url('images/bg-auth.svg')] bg-cover min-h-screen flex items-center justify-center">
             <div className={"gradient-border shadow-lg"}>
@@ -27,7 +34,7 @@ const Auth = () => {
                             <>
                                 {auth.isAuthenticated ? (
                                     <button className={"auth-button"} onClick={auth.signOut}>
-                                        <p>Listo</p>
+                                        <p>Log out</p>
                                     </button>
                                 ) : (
                                     <button className={"auth-button"} onClick={auth.signIn}>
