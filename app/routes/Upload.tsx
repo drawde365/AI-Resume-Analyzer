@@ -57,6 +57,7 @@ const Upload = () => {
 
         setStatusText("Analysis complete!");
         console.log(data);
+        navigate(`/resume/${uuid}`);
     }
 
     const handleFileSelect = (f: File | null) => {
