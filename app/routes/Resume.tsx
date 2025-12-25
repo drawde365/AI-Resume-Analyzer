@@ -79,15 +79,15 @@ const Resume = () => {
                 </section>
                 <section className="feedback-section">
                     <h2 className={"text-4xl !text-black font-bold"}>Resume review</h2>
-                    {feedback ? (<div>hola</div>
-                            /*
-                                <div className={"flex flex-col gap-8 animate-in fade-in duration-1000"}>
-                                    <Sumary feedback={feedback}/>
-                                    <ATS score={feedback.ATS.score || 0} suggestions={feedback.ATS.tips || []}/>
-                                    <Details feedback={feedback}/>
-                                </div>
-                                /*
-                             */
+                    {feedback ? (
+
+                            <div className={"flex flex-col gap-8 animate-in fade-in duration-1000"}>
+                                <Sumary feedback={feedback}/>
+                                {
+                                    //<ATS score={feedback.ATS.score || 0} suggestions={feedback.ATS.tips || []}/>
+                                    //<Details feedback={feedback}/>
+                                }
+                            </div>
                         ) :
                         <img src={"/images/resume-scan-2.gif"} className={"w-full"}/>
                     }
