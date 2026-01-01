@@ -48,7 +48,7 @@ const Resume = () => {
             setImageUrl(imageUrl);
 
 
-            setFeedback(JSON.parse(data.feedback));
+            setFeedback(data.feedback);
             console.log({resumeUrl, imageUrl, feedback: data.feedback});
             console.log("TIPOS:");
             console.log(typeof data);
@@ -87,8 +87,6 @@ const Resume = () => {
 
                             <div className={"flex flex-col gap-8 animate-in fade-in duration-1000"}>
                                 {/*<div>Hola</div>*/}
-                                console.log("EN RESUME COMPONENT");
-                                console.log(feedback);
                                 <Sumary feedback={feedback}/>
                                 <ATS score={feedback.ATS.score || 0} suggestions={feedback.ATS.tips || []}/>
                                 <Details feedback={feedback}/>
