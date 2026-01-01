@@ -47,8 +47,12 @@ const Resume = () => {
             const imageUrl = URL.createObjectURL(imageBlob);
             setImageUrl(imageUrl);
 
-            setFeedback(data.feedback);
+
+            setFeedback(JSON.parse(data.feedback));
             console.log({resumeUrl, imageUrl, feedback: data.feedback});
+            console.log("TIPOS:");
+            console.log(typeof data);
+            console.log(typeof data.feedback);
         }
         loadResume();
     }, [id]);
@@ -82,6 +86,9 @@ const Resume = () => {
                     {feedback ? (
 
                             <div className={"flex flex-col gap-8 animate-in fade-in duration-1000"}>
+                                {/*<div>Hola</div>*/}
+                                console.log("EN RESUME COMPONENT");
+                                console.log(feedback);
                                 <Sumary feedback={feedback}/>
                                 {
                                     //<ATS score={feedback.ATS.score || 0} suggestions={feedback.ATS.tips || []}/>

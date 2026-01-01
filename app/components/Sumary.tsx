@@ -7,7 +7,7 @@ const Category = ({title, score}: { title: string, score: number }) => {
         <div className={"resume-summary"}>
             <div className={"category"}>
                 <div className="flex flex-row gap-2 items-center justify-center">
-                    <p>{title}</p>
+                    <p className={"text-2xl"}>{title}</p>
                 </div>
                 <p className="text-2xl">
                     <span className={textColor}>{score}</span>
@@ -19,6 +19,7 @@ const Category = ({title, score}: { title: string, score: number }) => {
 }
 
 const Sumary = ({feedback}: { feedback: Feedback }) => {
+    console.log("EN SUMMARY COMPONENT");
     console.log(feedback);
     return (
 
@@ -32,12 +33,16 @@ const Sumary = ({feedback}: { feedback: Feedback }) => {
                     </p>
                 </div>
             </div>
-            {feedback.toneAndStyle.score === null ? (
-                <div>Es null</div>
-            ) : (
-                <div>No es null</div>
-            )
-            }
+            <Category title={"Tone and Style"} score={feedback.toneAndStyle.score}/>
+            <Category title={"Content"} score={feedback.content.score}/>
+            <Category title={"Structure"} score={feedback.structure.score}/>
+            <Category title={"Skills"} score={feedback.skills.score}/>
+            {/*{feedback.ATS === null ? (*/}
+            {/*    <div>Es indefinido</div>*/}
+            {/*) : (*/}
+            {/*    <div>No es indefinido</div>*/}
+            {/*)*/}
+            {/*}*/}
         </div>
     );
 };

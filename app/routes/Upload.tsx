@@ -44,7 +44,7 @@ const Upload = () => {
             companyName,
             jobTitle,
             jobDescription,
-            feedback: "",
+            feedback: null as Feedback | null,
         };
         await kv.set(`resume-${uuid}`, JSON.stringify(data));
         setStatusText("Analyzing resume...");
@@ -52,7 +52,19 @@ const Upload = () => {
             prepareInstructions({jobTitle, jobDescription}));
         if (!feedback) return setStatusText("Failed to analyze resume.");
         const feedbackText = typeof feedback.message.content === "string" ? feedback.message.content : feedback.message.content[0].text;
-        data.feedback = feedbackText;
+
+        //data.feedback = JSON.parse(feedbackText) as Feedback;
+
+        let parsed: Feedback;
+        try {
+            parsed = JSON.parse(feedbackText) as Feedback;
+        } catch {
+            console.log("Invalid JSON from AI:", feedbackText);
+            return setStatusText("AI returned invalid JSON.");
+        }
+        data.feedback = parsed;
+
+
         await kv.set(`resume-${uuid}`, JSON.stringify(data));
 
         setStatusText("Analysis complete!");
